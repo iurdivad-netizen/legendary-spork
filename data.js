@@ -123,3 +123,25 @@ const DIFFICULTY_SETTINGS = {
   normal: { label:'Normal', startBalance:12000, rivalMult:1.0,  desc:'Balanced challenge.' },
   hard:   { label:'Hard',   startBalance:5000,  rivalMult:1.25, desc:'Low budget, tougher competition.' },
 };
+
+// ─── Random Events ────────────────────────────────────────────────────────────
+const RANDOM_EVENTS = [
+  { id:'ev-sponsor',  name:'SPONSOR BONUS',     msg:'A title sponsor has injected cash into your team!',              type:'money',       value:8000 },
+  { id:'ev-weather',  name:'PERFECT CONDITIONS', msg:'Weather conditions perfectly suit your setup today!',           type:'race_bonus',  value:10   },
+  { id:'ev-rival',    name:'RIVAL TROUBLE',      msg:'Your rival has a technical issue in testing — weakened!',       type:'rival_debuff',value:8    },
+  { id:'ev-discount', name:'PARTS SALE',         msg:'Supplier clearing stock — 25% off all parts this week!',       type:'discount',    value:0.25 },
+  { id:'ev-press',    name:'MEDIA SPOTLIGHT',    msg:'Your team is in the news — bonus prize money this race!',       type:'prize_mult',  value:1.3  },
+  { id:'ev-upgrade',  name:'FREE UPGRADE',       msg:'A retiring team donated a part upgrade to your garage!',       type:'free_upgrade',value:0    },
+  { id:'ev-fine',     name:'TECHNICAL BREACH',   msg:'Stewards found a minor irregularity — £2,000 fine issued.',type:'fine',        value:2000 },
+  { id:'ev-windfall', name:'PRIZE FUND BOOST',   msg:'Series promoter added £5,000 to the race prize fund!',   type:'prize_bonus', value:5000 },
+];
+
+// ─── League Tiers ─────────────────────────────────────────────────────────────
+const LEAGUE_TIERS = [
+  { name:'ROOKIE',       minWins:0  },
+  { name:'AMATEUR',      minWins:1  },
+  { name:'PRO RACER',    minWins:3  },
+  { name:'ELITE RACER',  minWins:6  },
+  { name:'ICONIC RACER', minWins:10 },
+  { name:'LEGEND',       minWins:20 },
+];
