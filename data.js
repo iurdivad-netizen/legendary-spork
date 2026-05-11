@@ -10,11 +10,6 @@ const SLOT_LABELS = {
   brakes: 'Brakes', boost: 'Boost', aero: 'Aero', transmission: 'Transmission'
 };
 
-const SLOT_ICONS = {
-  engine: '&#9881;', tires: '&#9711;', suspension: '&#126;',
-  brakes: '&#9632;', boost: '&#187;', aero: '&#94;', transmission: '&#9889;'
-};
-
 // ─── Parts Catalogue ──────────────────────────────────────────────────────────
 // quality: 1-99  price: buy cost  sell: resale value (0 = starter, can't sell)
 const PARTS_CATALOGUE = {

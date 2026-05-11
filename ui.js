@@ -192,7 +192,7 @@ var MTSM_UI = (function () {
       '<div class="hub-world-rank">' +
         '<div class="hub-trophy">&#127942;</div>' +
         '<div class="hub-rank-label">WORLD RANK</div>' +
-        '<div class="hub-rank-num">' + playerRank + '#</div>' +
+        '<div class="hub-rank-num">#' + playerRank + '</div>' +
       '</div>';
 
     var driverInfo =
@@ -329,7 +329,7 @@ var MTSM_UI = (function () {
           (hasSave ? '<button class="btn-lg btn-accent" onclick="MTSM_UI.continueGame()">&#9654; Continue</button>' : '') +
           (hasSave ? '<button class="btn-lg btn-danger" onclick="MTSM_UI.confirmDelete()" style="font-size:8px">&#128465; Delete Save</button>' : '') +
         '</div>' +
-        '<div style="margin-top:48px;font-size:14px;color:var(--muted)">37 Parts &bull; 10 Circuits &bull; 11 Rivals &bull; Random Events</div>' +
+        '<div style="margin-top:48px;font-size:14px;color:var(--muted)">39 Parts &bull; 10 Circuits &bull; 11 Rivals &bull; Random Events</div>' +
       '</div>';
   }
 
@@ -874,9 +874,11 @@ var MTSM_UI = (function () {
     var podiums = s.raceHistory.filter(function (h) { return h.position <= 3 && !h.dnf; }).length;
     var dnfs    = s.raceHistory.filter(function (h) { return h.dnf; }).length;
     var total   = s.raceHistory.length;
-    var nonDNF  = total - dnfs || 1;
-    var avgPos  = s.raceHistory.filter(function (h) { return !h.dnf; })
-                    .reduce(function (a, h) { return a + h.position; }, 0) / nonDNF;
+    var nonDNF    = total - dnfs;
+    var avgPosStr = nonDNF > 0
+      ? (s.raceHistory.filter(function (h) { return !h.dnf; })
+           .reduce(function (a, h) { return a + h.position; }, 0) / nonDNF).toFixed(1)
+      : '—';
     var totalPrize = s.raceHistory.reduce(function (a, h) { return a + h.prize; }, 0);
     var winRate    = Math.round((wins / total) * 100);
     var podiumRate = Math.round((podiums / total) * 100);
@@ -901,7 +903,7 @@ var MTSM_UI = (function () {
           '<div class="stat-bar-label">DNF RATE <span class="stat-bar-val">' + dnfRate + '%</span></div>' +
           '<div class="stat-bar-track"><div class="stat-bar-fill" style="width:' + dnfRate + '%;background:var(--danger)"></div></div>' +
         '</div>' +
-        '<div style="margin-top:10px;font-size:16px;color:var(--muted)">Avg finish (excl DNF): <span style="color:var(--text)">' + avgPos.toFixed(1) + '</span></div>' +
+        '<div style="margin-top:10px;font-size:16px;color:var(--muted)">Avg finish (excl DNF): <span style="color:var(--text)">' + avgPosStr + '</span></div>' +
       '</div>';
 
     var raceRows = s.raceHistory.slice().reverse().map(function (h) {
@@ -973,7 +975,7 @@ var MTSM_UI = (function () {
     }
     app().className = '';
     if (MTSM_ENGINE.loadGame()) {
-      render('dashboard');
+      render('hub');
     } else {
       renderMenu();
     }
