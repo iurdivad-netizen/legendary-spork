@@ -1191,6 +1191,96 @@ label {
 #modal-body   { margin-bottom: 14px; font-size: 17px; }
 #modal-footer { display: flex; gap: 8px; justify-content: flex-end; flex-wrap: wrap; }
 
+/* ─── Start Screen ───────────────────────────────────────────────────────────── */
+#app.start-active { padding: 0; max-width: 100%; }
+
+.start-screen {
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
+  cursor: pointer;
+  background: linear-gradient(180deg,
+    #0f3d7a 0%, #1565c0 25%,
+    #1976d2 45%, #42a5f5 58%,
+    #4caf50 58%, #388e3c 72%,
+    #2e7d32 100%
+  );
+}
+
+.start-title-block {
+  position: absolute;
+  top: 26%;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+  z-index: 10;
+  white-space: nowrap;
+}
+
+.start-game-title {
+  font-family: var(--font-head);
+  font-size: 22px;
+  color: var(--primary);
+  letter-spacing: 4px;
+  line-height: 1.9;
+  animation: start-glow-pulse 2s ease-in-out infinite;
+}
+
+.start-subtitle {
+  font-family: var(--font-main);
+  font-size: 26px;
+  color: var(--accent);
+  text-shadow: var(--glow-accent);
+  margin-top: 8px;
+}
+
+.start-press-key {
+  position: absolute;
+  bottom: 64px;
+  left: 0; right: 0;
+  text-align: center;
+  font-family: var(--font-head);
+  font-size: 9px;
+  color: var(--text);
+  z-index: 10;
+  letter-spacing: 2px;
+  animation: start-blink 1.1s step-end infinite;
+}
+
+.start-version {
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+  font-size: 14px;
+  color: var(--muted);
+  z-index: 10;
+}
+
+.start-car-wrap {
+  position: absolute;
+  bottom: calc(42% + 10px);
+  left: -230px;
+  z-index: 8;
+  animation: start-car-drive 5s linear infinite;
+}
+
+.start-car-wrap .hub-car-svg { width: 280px; }
+
+@keyframes start-car-drive {
+  0%   { left: -290px; }
+  100% { left: 110%; }
+}
+
+@keyframes start-glow-pulse {
+  0%, 100% { text-shadow: 0 0 16px rgba(0,255,136,0.7); }
+  50%       { text-shadow: 0 0 32px rgba(0,255,136,1.0), 0 0 60px rgba(0,255,136,0.5); }
+}
+
+@keyframes start-blink {
+  0%, 49%   { opacity: 1; }
+  50%, 100% { opacity: 0; }
+}
+
 /* ─── Menu / Title Screen ────────────────────────────────────────────────────── */
 .menu-screen { text-align: center; padding: 40px 20px; }
 
@@ -1383,4 +1473,8 @@ label {
   .preset-grid { grid-template-columns: 1fr; }
   .q-bar-track { width: 56px; }
   .game-title  { font-size: 14px; }
+  .start-game-title { font-size: 13px; }
+  .start-subtitle   { font-size: 20px; }
+  .start-press-key  { font-size: 7px; }
+  .start-car-wrap .hub-car-svg { width: 180px; }
 }
