@@ -1,11 +1,6 @@
 // ─── Bootstrap ────────────────────────────────────────────────────────────────
 document.addEventListener('DOMContentLoaded', function () {
-  // If a saved game exists, go straight to the game; otherwise show the menu
-  if (MTSM_ENGINE.loadGame()) {
-    MTSM_UI.render('dashboard');
-  } else {
-    MTSM_UI.renderMenu();
-  }
+  MTSM_UI.renderStartScreen();
 });
 
 // Close modal on Escape key

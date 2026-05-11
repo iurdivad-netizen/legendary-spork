@@ -7,6 +7,7 @@ var MTSM_UI = (function () {
   var _leaguePage  = 0;
   var _tutorialStep = 0;
   var _notifTimer  = null;
+  var _startKeyHandler = null;
 
   var LEAGUE_PAGE_SIZE = 10;
 
@@ -940,6 +941,44 @@ var MTSM_UI = (function () {
     '</div>';
   }
 
+  // ── Start Screen ──────────────────────────────────────────────────────────────
+  function renderStartScreen() {
+    app().className = 'start-active';
+    app().innerHTML =
+      '<div class="start-screen" id="start-screen-div">' +
+        '<div class="game-bg-mountains"></div>' +
+        '<div class="game-bg-trees-l"></div>' +
+        '<div class="game-bg-trees-r"></div>' +
+        '<div class="game-bg-track-area"></div>' +
+        cloudHTML() +
+        '<div class="start-car-wrap">' + carSVG(false) + '</div>' +
+        '<div class="start-title-block">' +
+          '<div class="start-game-title">MOTOR TEAM<br>SPORTS MANAGER</div>' +
+          '<div class="start-subtitle">Build. Race. Dominate.</div>' +
+        '</div>' +
+        '<div class="start-press-key">— PRESS ANY KEY TO START —</div>' +
+        '<div class="start-version">v1.0</div>' +
+      '</div>';
+
+    if (_startKeyHandler) document.removeEventListener('keydown', _startKeyHandler);
+    _startKeyHandler = function () { _startScreenProceed(); };
+    document.addEventListener('keydown', _startKeyHandler);
+    $('start-screen-div').addEventListener('click', function () { _startScreenProceed(); });
+  }
+
+  function _startScreenProceed() {
+    if (_startKeyHandler) {
+      document.removeEventListener('keydown', _startKeyHandler);
+      _startKeyHandler = null;
+    }
+    app().className = '';
+    if (MTSM_ENGINE.loadGame()) {
+      render('dashboard');
+    } else {
+      renderMenu();
+    }
+  }
+
   // ── Shared ────────────────────────────────────────────────────────────────────
   function kpi(val, label) {
     return '<div class="kpi-box">' +
@@ -951,6 +990,8 @@ var MTSM_UI = (function () {
   // ── Public ────────────────────────────────────────────────────────────────────
   return {
     render:              render,
+    renderStartScreen:   renderStartScreen,
+    _startScreenProceed: _startScreenProceed,
     renderMenu:          renderMenu,
     renderNewGame:       renderNewGame,
     startGame:           startGame,
