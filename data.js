@@ -100,17 +100,17 @@ const TRACKS = [
 
 // ─── Rivals ───────────────────────────────────────────────────────────────────
 const RIVAL_DRIVERS = [
-  { name:'Marco Veloce',  initRating:35 },
-  { name:'Elena Storm',   initRating:40 },
-  { name:'Jack Thunder',  initRating:45 },
-  { name:'Sasha Nitro',   initRating:50 },
-  { name:'Priya Apex',    initRating:52 },
-  { name:'Carlos Fuego',  initRating:56 },
-  { name:'Yuki Drift',    initRating:59 },
-  { name:'Lars Turbo',    initRating:63 },
-  { name:'Amara Speed',   initRating:67 },
-  { name:'Finn Revs',     initRating:71 },
-  { name:'Viktor Blitz',  initRating:76 },
+  { name:'Marco Veloce',  initRating:35, carName:'Stallion'   },
+  { name:'Elena Storm',   initRating:40, carName:'Venom GT'   },
+  { name:'Jack Thunder',  initRating:45, carName:'Blitz'      },
+  { name:'Sasha Nitro',   initRating:50, carName:'Inferno'    },
+  { name:'Priya Apex',    initRating:52, carName:'Eclipse'    },
+  { name:'Carlos Fuego',  initRating:56, carName:'Vortex'     },
+  { name:'Yuki Drift',    initRating:59, carName:'Drift-Z'    },
+  { name:'Lars Turbo',    initRating:63, carName:'Razor X'    },
+  { name:'Amara Speed',   initRating:67, carName:'Phantom GT' },
+  { name:'Finn Revs',     initRating:71, carName:'ZX-9'       },
+  { name:'Viktor Blitz',  initRating:76, carName:'Rogue R'    },
 ];
 
 // ─── Economy ──────────────────────────────────────────────────────────────────

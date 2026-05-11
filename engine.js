@@ -100,6 +100,7 @@ const MTSM_ENGINE = (function () {
     return RIVAL_DRIVERS.map(function (rd) {
       return {
         name:    rd.name,
+        carName: rd.carName || 'Racer',
         rating:  Math.round(rd.initRating * diffMult),
         points:  0,
         wins:    0,
@@ -250,6 +251,10 @@ const MTSM_ENGINE = (function () {
         if (state.eventPrizeBonus === undefined) state.eventPrizeBonus = 0;
         if (state.eventDiscount   === undefined) state.eventDiscount   = 0;
         if (state.tutorialDone    === undefined) state.tutorialDone    = true;
+        // Migrate rival carNames from RIVAL_DRIVERS if missing
+        state.rivals.forEach(function (r, i) {
+          if (!r.carName && RIVAL_DRIVERS[i]) r.carName = RIVAL_DRIVERS[i].carName || 'Racer';
+        });
         return true;
       }
     } catch (e) {}
@@ -534,11 +539,11 @@ const MTSM_ENGINE = (function () {
   // ── Standings ───────────────────────────────────────────────────────────────
   function getStandings() {
     var list = state.rivals.map(function (r) {
-      return { name: r.name, points: r.points, wins: r.wins, rating: Math.round(r.rating), isPlayer: false };
+      return { name: r.name, carName: r.carName || 'Racer', points: r.points, wins: r.wins, rating: Math.round(r.rating), isPlayer: false };
     });
     list.push({
-      name: state.teamName, points: state.playerPoints,
-      wins: state.playerWins, rating: playerRating(), isPlayer: true
+      name: state.teamName, carName: state.carName || 'XX-Z',
+      points: state.playerPoints, wins: state.playerWins, rating: playerRating(), isPlayer: true
     });
     list.sort(function (a, b) { return b.points - a.points || b.wins - a.wins; });
     return list;
