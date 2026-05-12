@@ -320,17 +320,18 @@ var MTSM_UI = (function () {
   function renderMenu() {
     app().className = '';
     var hasSave = MTSM_ENGINE.hasSave();
-    app().innerHTML =
+    app().innerHTML = wrapInScene(
       '<div class="menu-screen">' +
         '<div class="game-title">MOTOR TEAM<br>SPORTS MANAGER</div>' +
         '<div class="game-subtitle">Build. Race. Dominate.</div>' +
         '<div class="menu-btns">' +
           '<button class="btn-lg" onclick="MTSM_UI.renderNewGame()">&#9654; New Game</button>' +
           (hasSave ? '<button class="btn-lg btn-accent" onclick="MTSM_UI.continueGame()">&#9654; Continue</button>' : '') +
-          (hasSave ? '<button class="btn-lg btn-danger" onclick="MTSM_UI.confirmDelete()" style="font-size:8px">&#128465; Delete Save</button>' : '') +
+          (hasSave ? '<button class="btn-lg btn-danger" onclick="MTSM_UI.confirmDelete()">&#128465; Delete Save</button>' : '') +
         '</div>' +
-        '<div style="margin-top:48px;font-size:14px;color:var(--muted)">39 Parts &bull; 10 Circuits &bull; 11 Rivals &bull; Random Events</div>' +
-      '</div>';
+        '<div class="menu-footer-info">39 Parts &bull; 10 Circuits &bull; 11 Rivals &bull; Random Events</div>' +
+      '</div>'
+    );
   }
 
   function confirmDelete() {
@@ -351,7 +352,7 @@ var MTSM_UI = (function () {
   }
 
   function renderNewGame() {
-    app().innerHTML =
+    app().innerHTML = wrapInScene(
       '<div class="sub-screen"><div class="panel">' +
         '<div class="panel-header">&#10010; New Career</div>' +
         '<div class="form-row"><label>Team Name</label><input type="text" id="team-name" value="Team Apex" maxlength="24"></div>' +
@@ -370,7 +371,8 @@ var MTSM_UI = (function () {
           '<button onclick="MTSM_UI.startGame()">&#9654; Start Season 1</button>' +
           '<button onclick="MTSM_UI.renderMenu()" style="border-color:var(--muted);color:var(--muted)">&#8592; Back</button>' +
         '</div>' +
-      '</div></div>';
+      '</div></div>'
+    );
   }
 
   function diffCard(id, label, descHtml, sel) {
@@ -562,7 +564,7 @@ var MTSM_UI = (function () {
     var cs   = calcCarStats();
 
     var discountBanner = (s.eventDiscount > 0)
-      ? '<div class="discount-active" style="margin:0 12px 0">&#128722; ' + Math.round(s.eventDiscount * 100) + '% DISCOUNT ACTIVE!</div>'
+      ? '<div class="discount-active">&#128722; ' + Math.round(s.eventDiscount * 100) + '% DISCOUNT ACTIVE!</div>'
       : '';
 
     // Left panel: car preview + stats
@@ -617,7 +619,7 @@ var MTSM_UI = (function () {
         '<td><span class="shop-cat-icon">' + SLOT_ICONS_EMOJI[p.slot] + '</span>' +
           '<span class="shop-cat-label">' + SLOT_LABELS[p.slot].toUpperCase() + '</span></td>' +
         '<td>' + p.name + '</td>' +
-        '<td style="color:#aaa;font-size:15px;max-width:180px;white-space:normal">' + p.desc + '</td>' +
+        '<td class="shop-part-desc">' + p.desc + '</td>' +
         '<td>' + priceCell + '</td>' +
         '<td>' + actionCell + '</td>' +
       '</tr>';
@@ -698,7 +700,7 @@ var MTSM_UI = (function () {
     }).filter(Boolean);
 
     var wearAlert = wearWarnings.length > 0
-      ? '<div style="background:rgba(255,51,68,0.1);border:1px solid var(--danger);padding:10px;margin-bottom:12px;font-size:16px">' +
+      ? '<div class="wear-alert">' +
           '<span class="badge badge-red">WARNING</span> Critical wear on: ' + wearWarnings.join(', ') +
           '. DNF risk elevated — overhaul in Garage first.' +
         '</div>'

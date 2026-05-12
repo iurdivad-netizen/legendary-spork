@@ -253,9 +253,9 @@ button:disabled, .btn:disabled {
   font-family: var(--font-head);
   font-size: 8px;
   padding: 8px 14px;
-  border: 2px solid #eee;
+  border: 2px solid var(--text);
   background: rgba(8,14,28,0.9);
-  color: #eee;
+  color: var(--text);
   cursor: pointer;
   letter-spacing: 0.5px;
   transition: all 140ms;
@@ -423,7 +423,8 @@ button:disabled, .btn:disabled {
 .shop-title-main {
   font-family: var(--font-head);
   font-size: 16px;
-  color: #fff;
+  color: var(--primary);
+  text-shadow: var(--glow);
   letter-spacing: 2px;
 }
 
@@ -1378,6 +1379,30 @@ label {
 .news-item { padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 16px; color: var(--muted); }
 .news-item:first-child { color: var(--text); }
 
+/* ─── Wear alert (race screen) ───────────────────────────────────────────────── */
+.wear-alert {
+  background: rgba(255,51,68,0.08);
+  border: 1px solid var(--danger);
+  padding: 10px 12px;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* ─── Shop part description cell ─────────────────────────────────────────────── */
+.shop-part-desc {
+  color: var(--muted);
+  font-size: 15px;
+  max-width: 180px;
+  white-space: normal;
+}
+
+/* ─── Menu footer info ───────────────────────────────────────────────────────── */
+.menu-footer-info {
+  margin-top: 48px;
+  font-size: 14px;
+  color: var(--muted);
+}
+
 /* ─── Track info ─────────────────────────────────────────────────────────────── */
 .track-card {
   border: 1px solid var(--border);
@@ -1439,10 +1464,12 @@ label {
   font-family: var(--font-head);
   font-size: 8px;
   color: var(--accent);
+  text-shadow: var(--glow-accent);
   border: 1px solid var(--accent);
+  box-shadow: 0 0 8px rgba(255,204,0,0.2);
   padding: 4px 10px;
   display: inline-block;
-  margin-bottom: 10px;
+  margin: 0 12px 12px;
   animation: pulse 2s ease-in-out infinite;
 }
 
